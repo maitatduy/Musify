@@ -16,9 +16,26 @@ export const getDataCategories = async (maxItem?: number) => {
           ...childValue,
         });
       });
-      if(maxItem) {
+      if (maxItem) {
         data = data.slice(0, maxItem);
       }
+      resolve(data);
+    });
+  });
+  return result;
+};
+
+export const getDataCategoryDetail = async (id: string) => {
+  const categoryDetailRef = ref(database, "categories/" + id);
+
+  const result: any[] = await new Promise((resolve) => {
+    onValue(categoryDetailRef, (snapshot) => {
+      const childKey = snapshot.key;
+      const childValue = snapshot.val();
+      const data: any = {
+        id: childKey,
+        ...childValue,
+      };
       resolve(data);
     });
   });
