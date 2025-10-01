@@ -1,29 +1,33 @@
 import Banner from "@/app/components/banner/Banner";
 import SongList from "@/app/components/song/SongList";
 import Title from "@/app/components/title/Title";
+import { database } from "@/app/firebaseConfig";
 import { ISongItem } from "@/app/interfaces/ISongItem";
+import { onValue, ref } from "firebase/database";
 
-export default function FeaturedSection() {
-  const dataSongList: ISongItem[] = [
-    {
-      image: "/demo/image-3.png",
-      title: "Cô Phòng",
-      singer: "Hồ Quang Hiếu, Huỳnh Văn",
-      listen: 24500,
-    },
-    {
-      image: "/demo/image-4.png",
-      title: "Hoa Nở Bên Đường",
-      singer: "Quang Đăng Trần, ACV",
-      listen: 20500,
-    },
-    {
-      image: "/demo/image-5.png",
-      title: "Hứa Đợi Nhưng Chẳng Tới",
-      singer: "Lâm Tuấn, Vương Thiên Tuấn",
-      listen: 18200,
-    },
-  ];
+const getDataSongList = async () => {
+  const songRef = ref(database, "songs");
+
+  const result: any[] = await new Promise((resolve) => {
+    onValue(songRef, (snapshot) => {
+      const data: any = [];
+      snapshot.forEach((childSnapshot) => {
+        const childKey = childSnapshot.key;
+        const childValue = childSnapshot.val();
+        data.push({
+          id: childKey,
+          ...childValue,
+        });
+      });
+      resolve(data.slice(1, 4));
+    });
+  });
+  return result;
+};
+
+export default async function FeaturedSection() {
+  const dataSongList: ISongItem[] = await getDataSongList();
+
   return (
     <>
       <div className="flex items-center">
