@@ -1,45 +1,32 @@
 import CardList from "@/app/components/card/CardList";
 import Title from "@/app/components/title/Title";
+import { database } from "@/app/firebaseConfig";
 import { ICardItem } from "@/app/interfaces/ICardItem";
+import { ref, onValue } from "firebase/database";
 
-export default function ArtistSection() {
-  const dataSingers: ICardItem[] = [
-    {
-      image: "/demo/image-11.png",
-      title: "Sơn Tùng M-TP",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      link: "",
-    },
-    {
-      image: "/demo/image-12.png",
-      title: "Nal",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      link: "",
-    },
-    {
-      image: "/demo/image-13.png",
-      title: "Tuấn Hưng",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      link: "",
-    },
-    {
-      image: "/demo/image-14.png",
-      title: "Jimmy Nguyễn",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      link: "",
-    },
-    {
-      image: "/demo/image-15.png",
-      title: "BigDaddy",
-      description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      link: "",
-    },
-  ];
+const getDataSingers = async () => {
+  const singerRef = ref(database, "singers");
+
+  const result: any[] = await new Promise((resolve) => {
+    onValue(singerRef, (snapshot) => {
+      const data: any = [];
+      snapshot.forEach((childSnapshot) => {
+        const childKey = childSnapshot.key;
+        const childValue = childSnapshot.val();
+        data.push({
+          id: childKey,
+          link: `/singers/${childKey}`,
+          ...childValue,
+        });
+      });
+      resolve(data.slice(0, 5));
+    });
+  });
+  return result;
+};
+
+export default async function ArtistSection() {
+  const dataSingers: ICardItem[] = await getDataSingers();
 
   return (
     <>
