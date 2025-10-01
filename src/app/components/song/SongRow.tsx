@@ -1,8 +1,9 @@
 import { ISongItem } from "@/app/interfaces/ISongItem";
+import Link from "next/link";
 import { FaPlay, FaRegHeart } from "react-icons/fa6";
 
 export default function SongRow(props: ISongItem) {
-  const { image = "", title = "", singer = "", time = "" } = props;
+  const { id = "", image = "", title = "", singer = "", time = "" } = props;
 
   return (
     <>
@@ -18,7 +19,9 @@ export default function SongRow(props: ISongItem) {
               className="w-full h-full object-cover"
             />
           </div>
-          <div className="font-[700] text-[14px] text-white">{title}</div>
+          <div className="font-[700] text-[14px] text-white">
+            <Link href={`/song/${id}`}>{title}</Link>
+          </div>
         </div>
 
         <div className="w-[30%] text-center">
