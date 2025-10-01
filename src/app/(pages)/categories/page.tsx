@@ -4,7 +4,7 @@ import { getDataCategories } from "@/app/helpers/getCategories";
 import { ICardItem } from "@/app/interfaces/ICardItem";
 
 export default async function CategoriesPage() {
-  const dataCategories: ICardItem[] = await getDataCategories(5);
+  const dataCategories: ICardItem[] = await getDataCategories();
 
   return (
     <>

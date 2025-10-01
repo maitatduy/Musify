@@ -1,16 +1,22 @@
 import CardInfo from "@/app/components/card/CardInfo";
 import PlaylistSong from "./PlaylistSong";
+import { getDataCategoryDetail } from "@/app/helpers/getCategories";
 
-export default function SongsByCategoryPage() {
+export default async function SongsByCategoryPage({
+  params,
+}: {
+  params: { id: string };
+}) {
+  const data: any = await getDataCategoryDetail(params.id);
   return (
     <>
       <CardInfo
-        image="/demo/image-6.png"
-        title="Nhạc Trẻ"
-        description="Top 100 Nhạc Trẻ là danh sách 100 ca khúc hot nhất hiện tại của thể loại Nhạc Trẻ, được Zing MP3 tự động tổng hợp dựa trên thông tin số liệu lượt nghe và lượt chia sẻ của từng bài hát trên phiên bản web và phiên bản Mobile. Dữ liệu sẽ được lấy trong 30 ngày gần nhất và được cập nhật liên tục."
+        image={data.image}
+        title={data.title}
+        description={data.description}
       />
 
-      <PlaylistSong />
+      <PlaylistSong id={params.id} />
     </>
   );
 }

@@ -1,47 +1,10 @@
 import SongTable from "@/app/components/song/SongTable";
 import Title from "@/app/components/title/Title";
-import { ISongItem } from "@/app/interfaces/ISongItem";
+import { getSongsList } from "@/app/helpers/getSongs";
 
-export default function PlaylistSong() {
-  const data: ISongItem[] = [
-    {
-      image: "/demo/image-3.png",
-      title: "Cô Phòng",
-      singer: "Hồ Quang Hiếu, Huỳnh Văn",
-      time: "4:32",
-    },
-    {
-      image: "/demo/image-3.png",
-      title: "Cô Phòng",
-      singer: "Hồ Quang Hiếu, Huỳnh Văn",
-      time: "4:32",
-    },
-    {
-      image: "/demo/image-3.png",
-      title: "Cô Phòng",
-      singer: "Hồ Quang Hiếu, Huỳnh Văn",
-      time: "4:32",
-    },
-    {
-      image: "/demo/image-3.png",
-      title: "Cô Phòng",
-      singer: "Hồ Quang Hiếu, Huỳnh Văn",
-      time: "4:32",
-    },
-    {
-      image: "/demo/image-3.png",
-      title: "Cô Phòng",
-      singer: "Hồ Quang Hiếu, Huỳnh Văn",
-      time: "4:32",
-    },
-    {
-      image: "/demo/image-3.png",
-      title: "Cô Phòng",
-      singer: "Hồ Quang Hiếu, Huỳnh Văn",
-      time: "4:32",
-    },
-  ];
-
+export default async function PlaylistSong(props: { id: string }) {
+  const { id } = props;
+  const data: any[] = await getSongsList(undefined, id);
   return (
     <>
       <div className="mt-[30px]">
