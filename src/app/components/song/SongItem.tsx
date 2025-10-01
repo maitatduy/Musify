@@ -3,7 +3,7 @@ import Link from "next/link";
 import { FaPlay, FaHeart } from "react-icons/fa6";
 
 export default function SongItem(props: ISongItem) {
-  const { image = "", title = "", singer = "", listen = 0 } = props;
+  const { id = "", image = "", title = "", singer = "", listen = 0 } = props;
   return (
     <>
       <div className="rounded-[15px] bg-[#212121] p-[10px] flex items-center">
@@ -14,7 +14,7 @@ export default function SongItem(props: ISongItem) {
           <div>
             <Link
               className="text-[16px] text-white font-semibold mb-[5px]"
-              href={"/"}
+              href={`/song/${id}`}
             >
               {title}
             </Link>
