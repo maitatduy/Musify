@@ -10,6 +10,7 @@ export default function SongTable(props: { data: ISongItem[] }) {
         {data.map((item, index) => (
           <SongRow
             key={index}
+            id={item.id}
             image={item.image}
             title={item.title}
             singer={item.singer}
