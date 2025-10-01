@@ -9,6 +9,7 @@ export default function SongList(props: { data: ISongItem[] }) {
         {data.map((item, index) => (
           <SongItem
             key={index}
+            id={item.id}
             image={item.image}
             title={item.title}
             singer={item.singer}
