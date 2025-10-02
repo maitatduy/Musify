@@ -7,7 +7,8 @@ export default async function SongsByCategoryPage({
 }: {
   params: { id: string };
 }) {
-  const data: any = await getDataCategoryDetail(params.id);
+  const data = await getDataCategoryDetail(params.id);
+
   return (
     <>
       <CardInfo
@@ -15,7 +16,6 @@ export default async function SongsByCategoryPage({
         title={data.title}
         description={data.description}
       />
-
       <PlaylistSong id={params.id} />
     </>
   );
