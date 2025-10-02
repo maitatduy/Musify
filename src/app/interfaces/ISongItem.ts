@@ -5,4 +5,5 @@ export interface ISongItem {
   singer: string;
   listen?: number;
   time?: string;
+  audio: string;
 }
