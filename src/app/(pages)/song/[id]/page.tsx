@@ -5,11 +5,7 @@ import { getSongsDetail } from "@/app/helpers/getSongs";
 import { notFound } from "next/navigation";
 import { getSingers } from "@/app/helpers/getSingers";
 
-export default async function SongDetailPage({
-  params,
-}: {
-  params: Record<string, string>;
-}) {
+export default async function SongDetailPage({ params }: any) {
   const data = await getSongsDetail(params.id);
 
   if (!data) {
@@ -25,17 +21,12 @@ export default async function SongDetailPage({
 
   return (
     <>
-      {/* CardInfo */}
       <CardInfo
         image={data.image}
         title={data.title}
         description={singerName}
       />
-
-      {/* Lời bài hát */}
       <LyricsBox lyric={data.lyric} />
-
-      {/* Bài hát cùng danh mục */}
       <RelatedSongs categoryId={data.categoryId} />
     </>
   );
