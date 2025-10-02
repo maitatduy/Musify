@@ -8,19 +8,21 @@ import { getSingers } from "@/app/helpers/getSingers";
 export default async function SongDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Record<string, string>;
 }) {
-  const data: any = await getSongsDetail(params.id);
+  const data = await getSongsDetail(params.id);
+
   if (!data) {
     notFound();
   }
-  const songDetail: any = await getSongsDetail(params.id);
-  let singersList: any[] = await getSingers();
-  const singersId: any[] = songDetail.singerId;
+
+  const singersList = await getSingers();
+  const singersId: string[] = data.singerId;
   const filteredSingers = singersList.filter((item) =>
     singersId.includes(item.id)
   );
   const singerName = filteredSingers.map((item) => item.title).join(", ");
+
   return (
     <>
       {/* CardInfo */}
@@ -29,6 +31,7 @@ export default async function SongDetailPage({
         title={data.title}
         description={singerName}
       />
+
       {/* Lời bài hát */}
       <LyricsBox lyric={data.lyric} />
 
