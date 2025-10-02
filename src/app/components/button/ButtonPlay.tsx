@@ -78,7 +78,7 @@ export default function ButtonPlay(props: ISongItem) {
         elementAudio.ontimeupdate = () => {
           const currentTime = elementAudio.currentTime;
           boxPlayTimeTotal.value = currentTime;
-          const percent = (currentTime * 100) / totalTime;
+          const percent = (currentTime * 100) / totalTime + 0.05;
           boxPlayTimeCurrent.style.width = `${percent}%`;
         };
       };
