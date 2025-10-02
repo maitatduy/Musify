@@ -35,7 +35,10 @@ export default function SongItem(props: ISongItem) {
           </div>
         </div>
         <div className="flex items-center gap-[10px]">
-          <ButtonPlay {...props} />
+          <ButtonPlay
+            {...props}
+            className="w-[34px] h-[34px] text-white border border-white rounded-full inline-flex items-center justify-center text-[15px]"
+          />
           <button className="w-[34px] h-[34px] text-white border border-white rounded-full inline-flex items-center justify-center text-[15px]">
             <FaHeart />
           </button>

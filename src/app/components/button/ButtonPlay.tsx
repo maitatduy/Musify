@@ -6,7 +6,7 @@ import { ISongItem } from "@/app/interfaces/ISongItem";
 import { FaPlay } from "react-icons/fa6";
 
 export default function ButtonPlay(props: ISongItem) {
-  const { id = "", image = "", title = "", audio = "" } = props;
+  const { id = "", image = "", title = "", audio = "", className = "" } = props;
 
   const handlePlay = async () => {
     const elementPlayAudio: any = document.querySelector(".play-audio");
@@ -89,10 +89,7 @@ export default function ButtonPlay(props: ISongItem) {
   };
 
   return (
-    <button
-      onClick={handlePlay}
-      className="w-[34px] h-[34px] text-white border border-white rounded-full inline-flex items-center justify-center text-[15px]"
-    >
+    <button onClick={handlePlay} className={className}>
       <FaPlay />
     </button>
   );

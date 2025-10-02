@@ -6,4 +6,5 @@ export interface ISongItem {
   listen?: number;
   time?: string;
   audio: string;
+  className?: string;
 }

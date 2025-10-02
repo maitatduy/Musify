@@ -1,6 +1,7 @@
 import { ISongItem } from "@/app/interfaces/ISongItem";
 import Link from "next/link";
 import { FaPlay, FaRegHeart } from "react-icons/fa6";
+import ButtonPlay from "../button/ButtonPlay";
 
 export default function SongRow(props: ISongItem) {
   const { id = "", image = "", title = "", singer = "", time = "" } = props;
@@ -9,9 +10,7 @@ export default function SongRow(props: ISongItem) {
     <>
       <div className="bg-[#212121] flex items-center justify-between py-[10px] px-[18px] rounded-[15px]">
         <div className="w-[40%] flex items-center">
-          <button className="text-white text-[24px]">
-            <FaPlay />
-          </button>
+          <ButtonPlay {...props} className="text-white text-[24px]" />
           <div className="mx-[12px] w-[42px] aspect-square rounded-[8px] truncate">
             <img
               src={image}
