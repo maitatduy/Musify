@@ -6,92 +6,94 @@ import { ISongItem } from "@/app/interfaces/ISongItem";
 import { FaPlay } from "react-icons/fa6";
 
 export default function ButtonPlay(props: ISongItem) {
-  const {
-    id = "",
-    image = "",
-    title = "",
-    singer = "",
-    listen = 0,
-    audio = "",
-  } = props;
+  const { id = "", image = "", title = "", audio = "" } = props;
+
   const handlePlay = async () => {
-    // Phát nhạc
     const elementPlayAudio: any = document.querySelector(".play-audio");
-    if (elementPlayAudio) {
-      const elementAudio = elementPlayAudio.querySelector(".inner-audio");
-      const elementSource = elementAudio.querySelector(".inner-source");
-      elementSource.src = audio;
-      elementAudio.load();
-      elementAudio.play();
 
-      // Hiển thị khối Play
-      elementPlayAudio.classList.remove("hidden");
+    if (!elementPlayAudio) return;
 
-      // Hiển thị ảnh
-      const elementImage: any = document.querySelector(".inner-image");
-      if (elementImage) {
-        elementImage.src = image;
-        elementImage.alt = title;
+    const elementAudio: any = elementPlayAudio.querySelector(".inner-audio");
+    const elementSource: any = elementAudio?.querySelector(".inner-source");
+
+    if (!elementAudio || !elementSource) return;
+
+    // Cập nhật src
+    elementSource.src = audio;
+
+    // Gắn listener trước khi load/play
+    const boxPlayTime: any = document.querySelector(".box-play-time");
+    const boxPlayTimeTotal: any =
+      boxPlayTime?.querySelector(".inner-total") || null;
+    const boxPlayTimeCurrent: any =
+      boxPlayTime?.querySelector(".inner-current") || null;
+
+    elementAudio.addEventListener("loadedmetadata", () => {
+      if (boxPlayTimeTotal) {
+        boxPlayTimeTotal.max = elementAudio.duration.toString();
       }
+    });
 
-      // Hiển thị tiêu đề
-      const elementTitle: any = document.querySelector(".inner-title");
-      if (elementTitle) {
-        elementTitle.innerHTML = title;
-      }
+    elementAudio.addEventListener("timeupdate", () => {
+      if (!boxPlayTimeTotal || !boxPlayTimeCurrent) return;
 
-      // Hiển thị tên ca sĩ
-      // Lấy ra thông tin chi tiết bài hát
-      const songDetail: any = await getSongsDetail(id);
-      // Lấy ra danh sách ca sĩ
-      let singersList: any[] = await getSingers();
-      // Lấy ra id của các ca sĩ
-      const singersId: any[] = songDetail.singerId;
-      // Lọc ra danh sách ca sĩ theo id
-      const filteredSingers = singersList.filter((item) =>
-        singersId.includes(item.id)
-      );
-      // Lấy tên ca sĩ và nối bằng dấu ", "
-      const singerName = filteredSingers.map((item) => item.title).join(", ");
-      const elementSinger: any = document.querySelector(".inner-singer");
-      if (elementSinger) {
-        elementSinger.innerHTML = singerName;
-      }
+      const currentTime = elementAudio.currentTime;
+      const totalTime = elementAudio.duration;
+      boxPlayTimeTotal.value = currentTime.toString();
+      const percent = (currentTime / totalTime) * 100;
+      boxPlayTimeCurrent.style.width = `${percent}%`;
+    });
 
-      // Thêm class play cho box button play
-      const boxButtonPlay = document.querySelector(".box-button-play");
-      if (boxButtonPlay) {
-        boxButtonPlay.classList.add("play");
-      }
+    // Load + play
+    elementAudio.load();
+    elementAudio.play();
 
-      // Lấy ra tổng thời gian của một bài hát
-      const boxPlayTime: any = document.querySelector(".box-play-time");
-      const boxPlayTimeTotal: any = boxPlayTime?.querySelector(".inner-total");
-      const boxPlayTimeCurrent: any =
-        boxPlayTime?.querySelector(".inner-current");
+    // Hiển thị khối Play
+    elementPlayAudio.classList.remove("hidden");
 
-      elementAudio.onloadedmetadata = () => {
-        const totalTime = elementAudio.duration;
-        boxPlayTimeTotal.max = totalTime;
+    // Hiển thị ảnh
+    const elementImage: HTMLImageElement | null =
+      document.querySelector(".inner-image");
+    if (elementImage) {
+      elementImage.src = image;
+      elementImage.alt = title;
+    }
 
-        // Lấy ra tổng thời gian hiện tại
-        elementAudio.ontimeupdate = () => {
-          const currentTime = elementAudio.currentTime;
-          boxPlayTimeTotal.value = currentTime;
-          const percent = (currentTime * 100) / totalTime + 0.05;
-          boxPlayTimeCurrent.style.width = `${percent}%`;
-        };
-      };
+    // Hiển thị tiêu đề
+    const elementTitle: HTMLElement | null =
+      document.querySelector(".inner-title");
+    if (elementTitle) {
+      elementTitle.innerHTML = title;
+    }
+
+    // Hiển thị tên ca sĩ
+    const songDetail: any = await getSongsDetail(id);
+    let singersList: any[] = await getSingers();
+    const singersId: any[] = songDetail.singerId;
+    const filteredSingers = singersList.filter((item) =>
+      singersId.includes(item.id)
+    );
+    const singerName = filteredSingers.map((item) => item.title).join(", ");
+    const elementSinger: HTMLElement | null =
+      document.querySelector(".inner-singer");
+    if (elementSinger) {
+      elementSinger.innerHTML = singerName;
+    }
+
+    // Thêm class play cho box button play
+    const boxButtonPlay: HTMLElement | null =
+      document.querySelector(".box-button-play");
+    if (boxButtonPlay) {
+      boxButtonPlay.classList.add("play");
     }
   };
+
   return (
-    <>
-      <button
-        onClick={handlePlay}
-        className="w-[34px] h-[34px] text-white border border-white rounded-full inline-flex items-center justify-center text-[15px]"
-      >
-        <FaPlay />
-      </button>
-    </>
+    <button
+      onClick={handlePlay}
+      className="w-[34px] h-[34px] text-white border border-white rounded-full inline-flex items-center justify-center text-[15px]"
+    >
+      <FaPlay />
+    </button>
   );
 }
