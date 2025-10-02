@@ -18,6 +18,9 @@ export default function ButtonPlay(props: ISongItem) {
 
     if (!elementAudio || !elementSource) return;
 
+    // Thêm id của bài hát
+    elementPlayAudio.setAttribute("song-id", id);
+
     // Cập nhật src
     elementSource.src = audio;
 
@@ -89,7 +92,7 @@ export default function ButtonPlay(props: ISongItem) {
   };
 
   return (
-    <button onClick={handlePlay} className={className}>
+    <button onClick={handlePlay} className={className} button-play="">
       <FaPlay />
     </button>
   );

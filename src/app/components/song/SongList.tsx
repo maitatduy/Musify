@@ -5,7 +5,7 @@ export default function SongList(props: { data: ISongItem[] }) {
   const { data } = props;
   return (
     <>
-      <div className="flex flex-col gap-[12px]">
+      <div className="flex flex-col gap-[12px]" song-list="">
         {data.map((item, index) => (
           <SongItem
             key={index}

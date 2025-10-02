@@ -14,7 +14,7 @@ export default function SongItem(props: ISongItem) {
   } = props;
   return (
     <>
-      <div className="rounded-[15px] bg-[#212121] p-[10px] flex items-center">
+      <div className="rounded-[15px] bg-[#212121] p-[10px] flex items-center" song-id={id}>
         <div className="w-[76px] h-[76px] aspect-square rounded-[10px] overflow-hidden">
           <img className="w-full h-full object-cover" src={image} alt={title} />
         </div>
