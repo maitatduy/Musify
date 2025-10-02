@@ -2,6 +2,7 @@ import { ISongItem } from "@/app/interfaces/ISongItem";
 import Link from "next/link";
 import { FaPlay, FaRegHeart } from "react-icons/fa6";
 import ButtonPlay from "../button/ButtonPlay";
+import ButtonHeart from "../button/ButtonHeart";
 
 export default function SongRow(props: ISongItem) {
   const { id = "", image = "", title = "", singer = "", time = "" } = props;
@@ -31,9 +32,7 @@ export default function SongRow(props: ISongItem) {
           <div className="font-[400] text-[14px] text-white mr-[18px]">
             {time}
           </div>
-          <button className="text-[20px] text-white">
-            <FaRegHeart />
-          </button>
+          <ButtonHeart {...props} />
         </div>
       </div>
     </>

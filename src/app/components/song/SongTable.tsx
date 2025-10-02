@@ -16,6 +16,7 @@ export default function SongTable(props: { data: ISongItem[] }) {
             singer={item.singer}
             time={item.time}
             audio={item.audio}
+            wishlist={item.wishlist}
           />
         ))}
       </div>
