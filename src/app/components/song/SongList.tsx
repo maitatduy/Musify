@@ -14,6 +14,7 @@ export default function SongList(props: { data: ISongItem[] }) {
             title={item.title}
             singer={item.singer}
             listen={item.listen}
+            audio={item.audio}
           />
         ))}
       </div>

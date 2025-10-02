@@ -1,9 +1,17 @@
 import { ISongItem } from "@/app/interfaces/ISongItem";
 import Link from "next/link";
-import { FaPlay, FaHeart } from "react-icons/fa6";
+import { FaHeart } from "react-icons/fa6";
+import ButtonPlay from "../button/ButtonPlay";
 
 export default function SongItem(props: ISongItem) {
-  const { id = "", image = "", title = "", singer = "", listen = 0 } = props;
+  const {
+    id = "",
+    image = "",
+    title = "",
+    singer = "",
+    listen = 0,
+    audio = "",
+  } = props;
   return (
     <>
       <div className="rounded-[15px] bg-[#212121] p-[10px] flex items-center">
@@ -27,9 +35,7 @@ export default function SongItem(props: ISongItem) {
           </div>
         </div>
         <div className="flex items-center gap-[10px]">
-          <button className="w-[34px] h-[34px] text-white border border-white rounded-full inline-flex items-center justify-center text-[15px]">
-            <FaPlay />
-          </button>
+          <ButtonPlay {...props} />
           <button className="w-[34px] h-[34px] text-white border border-white rounded-full inline-flex items-center justify-center text-[15px]">
             <FaHeart />
           </button>
