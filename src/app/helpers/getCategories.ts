@@ -6,7 +6,7 @@ export const getDataCategories = async (maxItem?: number) => {
 
   const result: any[] = await new Promise((resolve) => {
     onValue(categoriesRef, (snapshot) => {
-      let data: any = [];
+      let data: any[] = [];
       snapshot.forEach((childSnapshot) => {
         const childKey = childSnapshot.key;
         const childValue = childSnapshot.val();

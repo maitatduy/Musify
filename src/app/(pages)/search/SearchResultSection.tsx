@@ -13,9 +13,11 @@ export default function SearchResultSection() {
 
   useEffect(() => {
     const fetchAPI = async () => {
-      const data: any = await getSongsList();
+      const data: any[] = await getSongsList();
       const regex = new RegExp(keywordDefault, "i");
-      const dataFilter = data.filter((item: any) => regex.test(item.title));
+      const dataFilter: any[] = data.filter((item: any) =>
+        regex.test(item.title)
+      );
       setData(dataFilter);
     };
 

@@ -5,5 +5,5 @@ export interface IMenuLink {
   icon: ReactNode;
   title: String;
   link: Url;
-  logged?: boolean;
+  logged?: Boolean;
 }

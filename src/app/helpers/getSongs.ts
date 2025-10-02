@@ -12,7 +12,7 @@ export const getSongsList = async (max?: number, categoryId?: string) => {
 
   const result: any[] = await new Promise((resolve) => {
     onValue(songQuery, (snapshot) => {
-      let data: any = [];
+      let data: any[] = [];
       snapshot.forEach((childSnapshot) => {
         const childKey = childSnapshot.key;
         const childValue = childSnapshot.val();
@@ -40,7 +40,7 @@ export const getSongsWishlist = async (userId: string) => {
 
   const result: any[] = await new Promise((resolve) => {
     onValue(songQuery, (snapshot) => {
-      let data: any = [];
+      let data: any[] = [];
       snapshot.forEach((childSnapshot) => {
         const childKey = childSnapshot.key;
         const childValue = childSnapshot.val();

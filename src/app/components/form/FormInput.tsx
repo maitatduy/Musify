@@ -7,24 +7,19 @@ export default function FormInput(props: IFormInput) {
     name = "",
     id = "",
     placeholder = "",
-    required = false
+    required = false,
   } = props;
 
   return (
     <>
       <div className="mb-[15px]">
         {label && (
-          <label 
-            className="block mb-[5px] text-[14px] font-[600]" 
-            htmlFor={id}
-          >
+          <label className="block mb-[5px] text-[14px] font-[600]" htmlFor={id}>
             <span className="text-white">{label}</span>
-            {required && (
-              <span className="text-[#F21D2F] ml-[5px]">*</span>
-            )}
+            {required && <span className="text-[#F21D2F] ml-[5px]">*</span>}
           </label>
         )}
-        <input 
+        <input
           type={type}
           name={name}
           id={id}
@@ -34,5 +29,5 @@ export default function FormInput(props: IFormInput) {
         />
       </div>
     </>
-  )
+  );
 }

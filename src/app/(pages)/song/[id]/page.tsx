@@ -5,8 +5,8 @@ import { getSongsDetail } from "@/app/helpers/getSongs";
 import { notFound } from "next/navigation";
 import { getSingers } from "@/app/helpers/getSingers";
 
-export default async function SongDetailPage({ params }: any) {
-  const data = await getSongsDetail(params.id);
+export default async function SongDetailPage({ params }: { params: any }) {
+  const data: any = await getSongsDetail(params.id);
 
   if (!data) {
     notFound();

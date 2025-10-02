@@ -9,7 +9,7 @@ const getDataSingers = async () => {
 
   const result: any[] = await new Promise((resolve) => {
     onValue(singerRef, (snapshot) => {
-      const data: any = [];
+      const data: any[] = [];
       snapshot.forEach((childSnapshot) => {
         const childKey = childSnapshot.key;
         const childValue = childSnapshot.val();
@@ -26,7 +26,7 @@ const getDataSingers = async () => {
 };
 
 export default async function ArtistSection() {
-  const dataSingers: ICardItem[] = await getDataSingers();
+  const dataSingers: any[] = await getDataSingers();
 
   return (
     <>

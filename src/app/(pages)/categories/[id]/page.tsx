@@ -1,9 +1,8 @@
 import CardInfo from "@/app/components/card/CardInfo";
 import PlaylistSong from "./PlaylistSong";
 import { getDataCategoryDetail } from "@/app/helpers/getCategories";
-
-export default async function SongsByCategoryPage({ params }: any) {
-  const data = await getDataCategoryDetail(params.id);
+export default async function SongsByCategoryPage({ params }: { params: any }) {
+  const data: any = await getDataCategoryDetail(params.id);
 
   return (
     <>

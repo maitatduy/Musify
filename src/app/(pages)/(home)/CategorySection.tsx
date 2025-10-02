@@ -1,10 +1,9 @@
 import CardList from "@/app/components/card/CardList";
 import Title from "@/app/components/title/Title";
 import { getDataCategories } from "@/app/helpers/getCategories";
-import { ICardItem } from "@/app/interfaces/ICardItem";
 
 export default async function CategorySection() {
-  const dataCategories: ICardItem[] = await getDataCategories(5);
+  const dataCategories: any[] = await getDataCategories(5);
 
   return (
     <>
