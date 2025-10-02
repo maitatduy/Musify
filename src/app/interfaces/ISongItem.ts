@@ -7,4 +7,5 @@ export interface ISongItem {
   time?: string;
   audio: string;
   className?: string;
+  wishlist?: any;
 }

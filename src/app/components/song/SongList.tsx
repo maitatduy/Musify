@@ -15,6 +15,7 @@ export default function SongList(props: { data: ISongItem[] }) {
             singer={item.singer}
             listen={item.listen}
             audio={item.audio}
+            wishlist={item.wishlist}
           />
         ))}
       </div>

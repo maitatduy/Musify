@@ -2,6 +2,7 @@ import { ISongItem } from "@/app/interfaces/ISongItem";
 import Link from "next/link";
 import { FaHeart } from "react-icons/fa6";
 import ButtonPlay from "../button/ButtonPlay";
+import ButtonHeart from "../button/ButtonHeart";
 
 export default function SongItem(props: ISongItem) {
   const {
@@ -14,7 +15,10 @@ export default function SongItem(props: ISongItem) {
   } = props;
   return (
     <>
-      <div className="rounded-[15px] bg-[#212121] p-[10px] flex items-center" song-id={id}>
+      <div
+        className="rounded-[15px] bg-[#212121] p-[10px] flex items-center"
+        song-id={id}
+      >
         <div className="w-[76px] h-[76px] aspect-square rounded-[10px] overflow-hidden">
           <img className="w-full h-full object-cover" src={image} alt={title} />
         </div>
@@ -39,9 +43,7 @@ export default function SongItem(props: ISongItem) {
             {...props}
             className="w-[34px] h-[34px] text-white border border-white rounded-full inline-flex items-center justify-center text-[15px]"
           />
-          <button className="w-[34px] h-[34px] text-white border border-white rounded-full inline-flex items-center justify-center text-[15px]">
-            <FaHeart />
-          </button>
+          <ButtonHeart {...props} />
         </div>
       </div>
     </>
