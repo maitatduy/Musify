@@ -1,9 +1,12 @@
+import { Suspense } from "react";
 import SearchResultSection from "./SearchResultSection";
 
 export default function SearchPage() {
   return (
     <>
-      <SearchResultSection />
+      <Suspense>
+        <SearchResultSection />
+      </Suspense>
     </>
   );
 }
