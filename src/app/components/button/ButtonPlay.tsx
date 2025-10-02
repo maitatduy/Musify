@@ -57,6 +57,31 @@ export default function ButtonPlay(props: ISongItem) {
       if (elementSinger) {
         elementSinger.innerHTML = singerName;
       }
+
+      // Thêm class play cho box button play
+      const boxButtonPlay = document.querySelector(".box-button-play");
+      if (boxButtonPlay) {
+        boxButtonPlay.classList.add("play");
+      }
+
+      // Lấy ra tổng thời gian của một bài hát
+      const boxPlayTime: any = document.querySelector(".box-play-time");
+      const boxPlayTimeTotal: any = boxPlayTime?.querySelector(".inner-total");
+      const boxPlayTimeCurrent: any =
+        boxPlayTime?.querySelector(".inner-current");
+
+      elementAudio.onloadedmetadata = () => {
+        const totalTime = elementAudio.duration;
+        boxPlayTimeTotal.max = totalTime;
+
+        // Lấy ra tổng thời gian hiện tại
+        elementAudio.ontimeupdate = () => {
+          const currentTime = elementAudio.currentTime;
+          boxPlayTimeTotal.value = currentTime;
+          const percent = (currentTime * 100) / totalTime;
+          boxPlayTimeCurrent.style.width = `${percent}%`;
+        };
+      };
     }
   };
   return (
