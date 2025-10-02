@@ -1,36 +1,116 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎵 Music App
 
-## Getting Started
+A modern music streaming web application built with **Next.js 14 (App Router)**, **Firebase**, and **Tailwind CSS**.  
+Features include authentication, playlist management, favorites, real-time playback, and more.
 
-First, run the development server:
+---
+
+## 🚀 Features
+
+- 🔐 **Authentication**
+
+  - User registration & login with Firebase Auth
+  - Persistent session across pages
+  - Logout with menu state toggle
+
+- 🎶 **Music Player**
+
+  - Play / Pause songs
+  - Seek bar with real-time progress
+  - Volume control
+  - Next / Previous navigation
+
+- ❤️ **Favorites**
+
+  - Add / Remove songs from wishlist
+  - Display user's favorite songs list
+
+- 📂 **Categories & Search**
+  - Browse songs by categories
+  - Search songs and filter results
+  - Display singer information dynamically
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Next.js 14](https://nextjs.org/) (App Router)
+- **Language:** TypeScript
+- **Styling:** [Tailwind CSS](https://tailwindcss.com/)
+- **Database & Auth:** [Firebase](https://firebase.google.com/)
+- **Real-time:** Firebase Realtime Database
+- **Icons:** [React Icons](https://react-icons.github.io/react-icons)
+
+---
+
+## ⚡ Getting Started
+
+### 1️⃣ Clone repository
+
+```bash
+git clone https://github.com/maitatduy/Musify
+cd Musify
+```
+
+### 2️⃣ Install dependencies
+
+```bash
+npm install
+# or
+yarn install
+```
+
+### 3️⃣ Setup Firebase
+
+- Create a Firebase project in [Firebase Console](https://console.firebase.google.com/).
+- Enable **Authentication** (Email/Password).
+- Enable **Realtime Database**.
+- Copy your Firebase config into `src/app/firebaseConfig.ts`:
+
+```ts
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "YOUR_DOMAIN",
+  databaseURL: "YOUR_DB_URL",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_BUCKET",
+  messagingSenderId: "YOUR_SENDER_ID",
+  appId: "YOUR_APP_ID",
+};
+```
+
+### 4️⃣ Run the app
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit 👉 `http://localhost:3000`
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🤝 Contributing
 
-## Learn More
+Contributions, issues, and feature requests are welcome!  
+Feel free to check [issues page](https://github.com/maitatduy/Musify/issues).
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project is licensed under the **MIT License**.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 👨‍💻 Author
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **Mai Tất Duy**  
+  🔗 [GitHub](https://github.com/maitatduy)
+
+## 🚀 Deployment
+
+This project is deployed on [Vercel](https://vercel.com/).
+
+👉 Live Demo: [https://musify-ecru.vercel.app/](https://musify-ecru.vercel.app/)
+
+Whenever changes are pushed to the `main` branch, Vercel automatically builds and redeploys the latest version of the app.
